@@ -5,24 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bishesh Raj Khanal | Portfolio</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
       background-color: #121212;
       color: #f5f5f5;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
+      overflow: hidden; /* Prevent whole page scrolling */
     }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
     header {
       background-color: #1f1f1f;
-      padding: 2rem;
+      padding: 1rem;
       text-align: center;
+      flex: 0 0 auto;
     }
     header img {
-      width: 120px;
-      height: 120px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       border: 3px solid #4fc3f7;
       transition: transform 0.3s ease;
     }
@@ -31,58 +40,101 @@
     }
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 1.8rem;
     }
     header p {
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
       color: #aaa;
+      font-size: 0.9rem;
+    }
+    header p a {
+      color: #4fc3f7;
+      text-decoration: none;
+    }
+    header p a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      flex: 1 1 auto;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow-y: auto;
+    }
+
+    /* Scrollbar styling - dark theme */
+    .container::-webkit-scrollbar {
+      width: 12px;
+      background-color: #121212;
+    }
+    .container::-webkit-scrollbar-thumb {
+      background-color: #333;
+      border-radius: 10px;
+      border: 3px solid #121212;
+    }
+    .container::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
     }
     .container {
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #333 #121212;
     }
+
+    h2 {
+      text-align: center;
+      color: #4fc3f7;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
     }
+
     .project {
       background: linear-gradient(to bottom right, #1e1e1e, #2a2a2a);
-      padding: 1.5rem;
+      padding: 1rem;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: 0.9rem;
     }
     .project:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 25px rgba(0, 204, 255, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 204, 255, 0.4);
     }
     .project h2 {
       margin-top: 0;
       color: #4fc3f7;
+      font-size: 1.2rem;
     }
     .project a {
       color: #81d4fa;
       text-decoration: none;
       font-weight: bold;
+      font-size: 0.9rem;
     }
     .project a:hover {
       text-decoration: underline;
     }
     iframe {
       width: 100%;
-      height: 315px;
+      height: 200px;
       border: none;
       border-radius: 8px;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
+
     footer {
+      flex: 0 0 auto;
       text-align: center;
-      padding: 1rem;
+      padding: 0.5rem;
       background-color: #1f1f1f;
       color: #aaa;
-      margin-top: 2rem;
+      font-size: 0.8rem;
     }
   </style>
 </head>
@@ -90,19 +142,19 @@
   <header>
     <img src="profile.jpg" alt="Bishesh Raj Khanal" />
     <h1>Bishesh Raj Khanal</h1>
-    <p><p>Aspiring developer exploring game design, data science, and web scraping using C++, SFML, and Python.</p></p>
-    <p>Email: <a href="mailto:bishesh.khanal25@gmail.com" style="color:#4fc3f7;">bishesh.khanal25@gmail.com</a> |
-       GitHub: <a href="https://github.com/Bishesh-Khanal" target="_blank" style="color:#4fc3f7;">@Bishesh-Khanal</a> |
+    <p>Aspiring developer exploring game design, data science, and web scraping using C++, SFML, and Python.</p>
+    <p>Email: <a href="mailto:bishesh.khanal25@gmail.com">bishesh.khanal25@gmail.com</a> |
+       GitHub: <a href="https://github.com/Bishesh-Khanal" target="_blank">@Bishesh-Khanal</a> |
        Phone: +977-9765999991
     </p>
   </header>
 
   <div class="container">
-    <h2 style="text-align:center; color:#4fc3f7;">My Projects</h2>
+    <h2>My Projects</h2>
     <div class="projects-grid">
       <div class="project">
         <h2>Top-Down Adventure Game</h2>
-        <p>Adventure game with patrolling and chasing enemies, health bars, and dynamic vision-blocking systems.(There is no sound because of copyright issues)</p>
+        <p>Adventure game with patrolling and chasing enemies, health bars, and dynamic vision-blocking systems. (No sound due to copyright issues)</p>
         <p><strong>Tech:</strong> C++, SFML</p>
         <a href="https://github.com/Bishesh-Khanal/2D-Up-Down-Adventure-Game.git">GitHub Repo</a>
         <iframe src="https://www.youtube.com/embed/u16kZ6ctzy0" allowfullscreen></iframe>
@@ -134,7 +186,7 @@
 
       <div class="project">
         <h2>2D Platformer Game</h2>
-        <p>Multi-level platformer game where players shoot, collect coins, and progress through challenges.(There is no sound because of copyright issues)</p>
+        <p>Multi-level platformer game where players shoot, collect coins, and progress through challenges. (No sound due to copyright issues)</p>
         <p><strong>Tech:</strong> C++, SFML</p>
         <a href="https://github.com/Bishesh-Khanal/2D-Platformer.git">GitHub Repo</a>
         <iframe src="https://www.youtube.com/embed/VufWzFH-OhU" allowfullscreen></iframe>
@@ -142,15 +194,15 @@
 
       <div class="project">
         <h2>Job Market Data Pipeline (Web Scraper)</h2>
-        <p>Demonstration of interactive dashboard created from scratch using the Panel library of python for EDA of Job listings scrapped from the internet.</p>
-        <p><strong>Tech:</strong> Python, Panel, Beautifulsoup</p>
+        <p>Interactive dashboard created using the Panel library for EDA of job listings scraped from the internet.</p>
+        <p><strong>Tech:</strong> Python, Panel, BeautifulSoup</p>
         <p><strong>GitHub:</strong> Private Repo</p>
         <iframe src="https://www.youtube.com/embed/NFKpXnPyFCI" allowfullscreen></iframe>
       </div>
 
       <div class="project">
         <h2>Fake News Detector</h2>
-        <p>Trained a binary classifier on real-world news data to distinguish fake vs real articles. Presented at an international conference and received Best Paper Presentation Award.</p>
+        <p>Binary classifier trained on real-world news data to distinguish fake vs real articles. Presented at an international conference and awarded Best Paper Presentation.</p>
         <p><strong>Tech:</strong> Python, Scikit-learn, Pandas</p>
         <p><strong>GitHub:</strong> Private Repo</p>
       </div>
