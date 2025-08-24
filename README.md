@@ -7,6 +7,7 @@ Visit the live version: [https://bishesh-khanal.github.io/Portfolio/](https://bi
 ## 📁 Projects Featured
 
 - 🎮 **2D Platformer** – Multi-level platformer game with shooting and coin collection.
+- 🔍 **BFS Pathfinding Simulator** – Visualize how NPCs in 2D games use Breadth-First Search (BFS) to find the optimal path.
 - 🔲 **Geometry Shooter** – Shape-based enemy shooting game with shields and scoring.
 - 🧭 **Top-Down Adventure** – Enemies with patrolling/chasing AI and dynamic vision blocking.
 - 💡 **Light Tracer** – Simulates real-time lighting and shadows from a point light source.
