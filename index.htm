@@ -1,231 +1,756 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bishesh Raj Khanal | Portfolio</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background-color: #121212;
-      color: #f5f5f5;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden; /* Prevent whole page scrolling */
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bishesh Raj Khanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f4;
+    --surface: #ffffff;
+    --surface-alt: #eeede8;
+    --ink: #17191a;
+    --ink-muted: #5c6163;
+    --line: #dedcd5;
+    --accent: #2e5f63;
+    --accent-soft: #e3edec;
+  }
 
-    header {
-      background-color: #1f1f1f;
-      padding: 1rem;
-      text-align: center;
-      flex: 0 0 auto;
-    }
-    header img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 0.5rem;
-      border: 3px solid #4fc3f7;
-      transition: transform 0.3s ease;
-    }
-    header img:hover {
-      transform: scale(1.1);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-    header p {
-      margin-top: 0.3rem;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-    header p a {
-      color: #4fc3f7;
-      text-decoration: none;
-    }
-    header p a:hover {
-      text-decoration: underline;
-    }
+  * { box-sizing: border-box; }
 
-    .container {
-      flex: 1 1 auto;
-      padding: 1rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      overflow-y: auto;
-    }
+  html { scroll-behavior: smooth; }
 
-    /* Scrollbar styling - dark theme */
-    .container::-webkit-scrollbar {
-      width: 12px;
-      background-color: #121212;
-    }
-    .container::-webkit-scrollbar-thumb {
-      background-color: #333;
-      border-radius: 10px;
-      border: 3px solid #121212;
-    }
-    .container::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
-    }
-    .container {
-      scrollbar-width: thin;
-      scrollbar-color: #333 #121212;
-    }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    h2 {
-      text-align: center;
-      color: #4fc3f7;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; margin: 0; }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1rem;
-    }
+  .mono { font-family: 'JetBrains Mono', monospace; }
 
-    .project {
-      background: linear-gradient(to bottom right, #1e1e1e, #2a2a2a);
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-size: 0.9rem;
-    }
-    .project:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 204, 255, 0.4);
-    }
-    .project h2 {
-      margin-top: 0;
-      color: #4fc3f7;
-      font-size: 1.2rem;
-    }
-    .project a {
-      color: #81d4fa;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-    .project a:hover {
-      text-decoration: underline;
-    }
-    iframe {
-      width: 100%;
-      height: 200px;
-      border: none;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-    }
+  a { color: var(--accent); }
 
-    footer {
-      flex: 0 0 auto;
-      text-align: center;
-      padding: 0.5rem;
-      background-color: #1f1f1f;
-      color: #aaa;
-      font-size: 0.8rem;
-    }
-  </style>
+  .wrap {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 4.5rem);
+  }
+
+  /* Nav */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(247, 247, 244, 0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+  nav .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fdfdfb;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.7rem;
+    border-radius: 8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(46, 95, 99, 0.3);
+  }
+  .btn-primary.btn-small {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+  .btn-primary.btn-large {
+    font-size: 1.05rem;
+    padding: 1rem 2.2rem;
+  }
+  header.hero .btn-primary {
+    margin-top: 1.6rem;
+  }
+
+  /* Hero */
+  header.hero {
+    padding: 4.5rem 0 3rem;
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    margin-bottom: 0.9rem;
+  }
+  header.hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  header.hero .role {
+    color: var(--ink-muted);
+    font-size: 1.05rem;
+    margin-top: 0.5rem;
+  }
+  header.hero p.summary {
+    max-width: 64ch;
+    margin-top: 1.3rem;
+    color: var(--ink);
+  }
+  .contact-row {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+  }
+  .contact-row a { text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .contact-row a:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-row span.dot { color: var(--line); }
+
+  /* Terminal signature line */
+  .terminal {
+    margin-top: 2.2rem;
+    background: var(--ink);
+    color: #d9e6e4;
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    max-width: 480px;
+  }
+  .terminal .line1 { color: #8fa6a4; }
+  .terminal .prompt { color: #7fd1c4; }
+  .cursor {
+    display: inline-block;
+    width: 0.55em;
+    background: #7fd1c4;
+    margin-left: 2px;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; }
+  }
+
+  /* Sections */
+  section { padding: 3rem 0; border-top: 1px solid var(--line); }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 1.8rem;
+  }
+  .section-head .index {
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+  }
+  .section-head h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  /* Experience */
+  .job {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+  }
+  .job .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+  .job h3 { font-size: 1.05rem; font-weight: 600; }
+  .job .company { color: var(--ink-muted); font-size: 0.92rem; margin-top: 0.15rem; }
+  .job ul {
+    margin: 1rem 0 0;
+    padding-left: 1.1rem;
+  }
+  .job li { margin-bottom: 0.6rem; font-size: 0.95rem; }
+  .job .note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    border-left: 2px solid var(--line);
+    padding-left: 0.8rem;
+  }
+  @media (max-width: 620px) {
+    .job { grid-template-columns: 1fr; }
+  }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.1rem;
+  }
+  .project {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.3rem;
+  }
+  .project h3 { font-size: 1rem; font-weight: 600; }
+  .project p.desc {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    margin: 0.6rem 0 0.9rem;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.9rem; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+  .project .links {
+    font-size: 0.85rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .project .links a { text-decoration: none; }
+  .project .links a:hover { text-decoration: underline; }
+  .project .private {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.6rem 2rem;
+  }
+  .skill-group h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+  .skill-group .tags .tag {
+    background: var(--surface-alt);
+    color: var(--ink);
+  }
+
+  /* Achievement + education */
+  .achievement {
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem;
+    font-size: 0.92rem;
+  }
+  .edu h3 { font-size: 1rem; font-weight: 600; }
+  .edu .meta { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--ink-muted); margin-top: 0.2rem; }
+  .edu .tags { margin-top: 0.8rem; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 2.2rem 0 3rem;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  footer a { color: var(--ink-muted); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* Hobbies carousel */
+  .hobbies-layout {
+    display: grid;
+    grid-template-columns: 1.6fr 1.4fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .hobbies-intro p {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    max-width: 64ch;
+  }
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    min-width: 0;
+  }
+  .carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+    padding: 0.5rem 0;
+  }
+  .carousel-track {
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .carousel-item {
+    flex: 0 0 auto;
+    width: 210px;
+    margin: 0 10px;
+    opacity: 0.25;
+    transform: scale(0.72);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  }
+  .carousel-item.is-near { opacity: 0.5; transform: scale(0.86); }
+  .carousel-item.is-focus { opacity: 1; transform: scale(1); }
+  .carousel-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .carousel-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  .carousel-item:not(.is-focus) .carousel-frame iframe {
+    pointer-events: none;
+  }
+  .carousel-caption {
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    text-align: center;
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .carousel-item.is-focus .carousel-caption { color: var(--ink); }
+  .carousel-controls { display: flex; gap: 1rem; }
+  .carousel-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .carousel-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 780px) {
+    .hobbies-layout { grid-template-columns: 1fr; }
+    .carousel-item { width: 65vw; max-width: 260px; }
+  }
+
+  /* Closing CTA band */
+  .cta-band {
+    background: var(--ink);
+    border-radius: 14px;
+    padding: 3.2rem 2rem;
+    text-align: center;
+    max-width: 760px;
+    margin: 1rem auto 3rem;
+  }
+  .cta-band h2 {
+    color: #f5f5f2;
+    font-size: 1.7rem;
+    margin-bottom: 0.7rem;
+  }
+  .cta-band p {
+    color: #b8bdba;
+    max-width: 42ch;
+    margin: 0 auto 1.8rem;
+    font-size: 0.98rem;
+  }
+  .mailto-note {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: #8a8f8d;
+  }
+
+  /* Copy-email toast */
+  .copy-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.6rem;
+    transform: translate(-50%, 12px);
+    background: var(--ink);
+    color: #f5f5f2;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 50;
+  }
+  .copy-toast.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+</style>
 </head>
 <body>
-  <header>
-    <img src="profile.jpg" alt="Bishesh Raj Khanal" />
+
+<div class="copy-toast" id="copyToast"></div>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">BK/</span>
+    <a class="btn-primary btn-small" href="mailto:bishesh.khanal25@gmail.com">Contact me</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow mono">based in Kathmandu, Nepal &amp; usually mid-discovery...</div>
     <h1>Bishesh Raj Khanal</h1>
-    <p>Aspiring developer exploring game design, data science, and web scraping using C++, SFML, and Python.</p>
-    <p>Email: <a href="mailto:bishesh.khanal25@gmail.com">bishesh.khanal25@gmail.com</a> |
-       GitHub: <a href="https://github.com/Bishesh-Khanal" target="_blank">@Bishesh-Khanal</a> |
-       Phone: +977-9765999991
+    <div class="role">Bridging Software and Product Delivery</div>
+    <p class="summary">
+      Anyone can write code that runs. What I aim to do is take a rough idea and turn
+      it into something people depend on, then be ready to own it when it's on the line.
+      I'd rather be the one held accountable when something breaks than just the one who wrote it:
+      <strong>"it works" should be where the job starts, not where it ends</strong>.
     </p>
-  </header>
+    <a class="btn-primary" href="mailto:bishesh.khanal25@gmail.com">Contact me →</a>
+    <div class="contact-row">
+      <a href="https://drive.google.com/file/d/1lu9h8hjj2yijDPmUamlkU9erIkIW4jDD/view?usp=sharing" target="_blank" rel="noopener noreferrer">Résumé</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/Bishesh-Khanal" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <span class="dot">·</span>
+      <a href="https://www.linkedin.com/in/bishesh-raj-khanal-1a1613239" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span class="dot">·</span>
+      <span>+977-9845871639</span>
+    </div>
+    <div class="terminal">
+      <div class="line1">$ whoami</div>
+      <div class="prompt">&gt; the one who owns it when it breaks<span class="cursor">&nbsp;</span></div>
+    </div>
+  </div>
+</header>
 
-  <div class="container">
-    <h2>My Projects</h2>
-    <div class="projects-grid">
-      <div class="project">
-        <h2>Top-Down Adventure Game</h2>
-        <p>Adventure game with patrolling and chasing enemies, health bars, and dynamic vision-blocking systems. (No sound due to copyright issues)</p>
-        <p><strong>Tech:</strong> C++, SFML</p>
-        <a href="https://github.com/Bishesh-Khanal/2D-Up-Down-Adventure-Game.git">GitHub Repo</a>
-        <iframe src="https://www.youtube.com/embed/u16kZ6ctzy0" allowfullscreen></iframe>
-      </div>
-
-      <div class="project">
-        <h2>BFS Simulator</h2>
-        <p>Simulating BFS to mimic how a NPC finds the best path to a certain point in a 2D Game.</p>
-        <p><strong>Tech:</strong> C++, SFML</p>
-        <a href="https://github.com/Bishesh-Khanal/BFS_Simulator.git">GitHub Repo</a>
-        <iframe src="https://www.youtube.com/embed/vhWV13RCl4E" allowfullscreen></iframe>
-      </div>
-
-      <div class="project">
-        <h2>Geometry Shooter</h2>
-        <p>Arcade-style game featuring shape-based enemies, random spawns, bullets, shields, and score system.</p>
-        <p><strong>Tech:</strong> C++, SFML</p>
-        <a href="https://github.com/Bishesh-Khanal/2D-Geometry-Shooter.git">GitHub Repo</a>
-        <iframe src="https://www.youtube.com/embed/FnEnLU3nJw0" allowfullscreen></iframe>
-      </div>
-
-      <div class="project">
-        <h2>2D Light Tracer</h2>
-        <p>Simulates real-time light and shadow interaction with obstacles. The light source follows the mouse cursor.</p>
-        <p><strong>Tech:</strong> C++, SFML</p>
-        <a href="https://github.com/Bishesh-Khanal/LightTracing.git">GitHub Repo</a>
-        <iframe src="https://www.youtube.com/embed/L4uVsf_uuWU" allowfullscreen></iframe>
-      </div>
-
-      <div class="project">
-        <h2>Texture-Revealing Light Tracer</h2>
-        <p>Enhanced light tracer that only displays parts of the texture visible to light, based on raycasting.</p>
-        <p><strong>Tech:</strong> C++, SFML</p>
-        <a href="https://github.com/Bishesh-Khanal/ImageTracing.git">GitHub Repo</a>
-        <iframe src="https://www.youtube.com/embed/L1UXI1_K-hM" allowfullscreen></iframe>
-      </div>
-
-      <div class="project">
-        <h2>2D Platformer Game</h2>
-        <p>Multi-level platformer game where players shoot, collect coins, and progress through challenges. (No sound due to copyright issues)</p>
-        <p><strong>Tech:</strong> C++, SFML</p>
-        <a href="https://github.com/Bishesh-Khanal/2D-Platformer.git">GitHub Repo</a>
-        <iframe src="https://www.youtube.com/embed/VufWzFH-OhU" allowfullscreen></iframe>
-      </div>
-
-      <div class="project">
-        <h2>Job Market Data Pipeline (Web Scraper)</h2>
-        <p>Interactive dashboard created using the Panel library for EDA of job listings scraped from the internet.</p>
-        <p><strong>Tech:</strong> Python, Panel, BeautifulSoup</p>
-        <p><strong>GitHub:</strong> Private Repo</p>
-        <iframe src="https://www.youtube.com/embed/NFKpXnPyFCI" allowfullscreen></iframe>
-      </div>
-
-      <div class="project">
-        <h2>Fake News Detector</h2>
-        <p>Binary classifier trained on real-world news data to distinguish fake vs real articles. Presented at an international conference and awarded Best Paper Presentation.</p>
-        <p><strong>Tech:</strong> Python, Scikit-learn, Pandas</p>
-        <p><strong>GitHub:</strong> Private Repo</p>
-      </div>
-
-      <div class="project">
-        <h2>Tech Company Data Scraper</h2>
-        <p>Extracted and cleaned structured metadata from 100+ tech company profiles on a developer platform for analysis and insights.</p>
-        <p><strong>Tech:</strong> Python, BeautifulSoup, Pandas</p>
-        <p><strong>GitHub:</strong> Private Repo</p>
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index mono">// 01</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="job">
+      <div class="meta">Oct 2025 — Jun 2026<br/>Banepa, Nepal</div>
+      <div>
+        <h3>Backend and Platform Engineer</h3>
+        <div class="company">Kyra Works Pvt. Ltd.</div>
+        <ul>
+          <li>Was the person accountable for the systems that touch money and customer trust, not just the one who built them.</li>
+          <li>Turned "we have no visibility into our systems" into a working observability platform the whole company could rely on.</li>
+          <li>Replaced manual, error-prone processes with automation that just runs, freeing up hours nobody wants to spend babysitting a script.</li>
+        </ul>
+        <div class="note">Moved on after the contract wrapped up; time to travel, build, and finish my degree.</div>
       </div>
     </div>
   </div>
+</section>
 
-  <footer>
-    © 2025 Bishesh Raj Khanal | Contact: bishesh.khanal25@gmail.com
-  </footer>
+<section id="hobbies">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index mono">// 02</span>
+      <h2>What I Do When There's Nothing To Do</h2>
+    </div>
+    <div class="hobbies-layout">
+      <div class="hobbies-intro">
+        <p>I usually pass my free time building small games, simulators, and tools from scratch just to see if I can, using mostly C++ and SFML, lighting, vision, pathfinding, that sort of thing.</p>
+      </div>
+      <div class="carousel" id="hobbyCarousel">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-item">
+              <div class="carousel-frame"><iframe src="https://www.youtube.com/embed/u16kZ6ctzy0" title="Top-Down Adventure Game" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+              <div class="carousel-caption">Top-Down Adventure Game</div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-frame"><iframe src="https://www.youtube.com/embed/vhWV13RCl4E" title="BFS Simulator" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+              <div class="carousel-caption">BFS Simulator</div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-frame"><iframe src="https://www.youtube.com/embed/FnEnLU3nJw0" title="Geometry Shooter" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+              <div class="carousel-caption">Geometry Shooter</div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-frame"><iframe src="https://www.youtube.com/embed/L4uVsf_uuWU" title="2D Light Tracer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+              <div class="carousel-caption">2D Light Tracer</div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-frame"><iframe src="https://www.youtube.com/embed/L1UXI1_K-hM" title="Texture-Revealing Light Tracer" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+              <div class="carousel-caption">Texture-Revealing Light Tracer</div>
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-frame"><iframe src="https://www.youtube.com/embed/VufWzFH-OhU" title="2D Platformer Game" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+              <div class="carousel-caption">2D Platformer Game</div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carouselPrev" aria-label="Show previous video">←</button>
+          <button class="carousel-btn" id="carouselNext" aria-label="Show next video">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index mono">// 03</span>
+      <h2>Selected Projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project">
+        <h3>Fake News Detector</h3>
+        <p class="desc">Won <a href="https://drive.google.com/file/d/1aVrThNdO3zY4EOoC4bYDDfN_2kCuJZ-S/view?usp=sharing" target="_blank" rel="noopener noreferrer">Best Paper Presentation</a> at an international AI conference in India.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span></div>
+        <div class="links"><span class="private">private repo</span></div>
+      </div>
+
+      <div class="project">
+        <h3>Fake News Detection via GNN</h3>
+        <p class="desc">Modeling how misinformation spreads, using graphs instead of plain text.</p>
+        <div class="tags"><span class="tag">PyTorch Geometric</span></div>
+        <div class="links"><span class="private">research project</span></div>
+      </div>
+
+      <div class="project">
+        <h3>Job Market Data Pipeline</h3>
+        <p class="desc">Scrapes and cleans market listings into a live decision-making dashboard.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Panel</span></div>
+        <div class="links"><span class="private">private repo</span></div>
+      </div>
+
+      <div class="project">
+        <h3>C++ Systems &amp; Pathfinding Engine</h3>
+        <p class="desc">Small game engines built for fun; lighting, vision, pathfinding, all from scratch.</p>
+        <div class="tags"><span class="tag">C++</span><span class="tag">SFML</span></div>
+        <div class="links">
+          <a href="https://github.com/Bishesh-Khanal/BFS_Simulator.git" target="_blank" rel="noopener noreferrer">Pathfinding →</a>
+          <a href="https://github.com/Bishesh-Khanal/LightTracing.git" target="_blank" rel="noopener noreferrer">Light tracer →</a>
+          <a href="https://github.com/Bishesh-Khanal/2D-Up-Down-Adventure-Game.git" target="_blank" rel="noopener noreferrer">Adventure game →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index mono">// 04</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Backend &amp; Integration</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">C++</span><span class="tag">C</span><span class="tag">C#</span><span class="tag">Rust</span><span class="tag">Stripe</span><span class="tag">Twilio</span><span class="tag">Sendgrid</span><span class="tag">RabbitMQ</span><span class="tag">Keycloak</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Database &amp; ORM</h3>
+        <div class="tags">
+          <span class="tag">PostgreSQL</span><span class="tag">CockroachDB</span><span class="tag">Alembic</span><span class="tag">Redis</span><span class="tag">DBeaver</span><span class="tag">PgAdmin</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Observability &amp; Reliability</h3>
+        <div class="tags">
+          <span class="tag">OpenTelemetry</span><span class="tag">OpenObserve</span><span class="tag">Distributed Tracing</span><span class="tag">SLOs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Security</h3>
+        <div class="tags">
+          <span class="tag">Cryptography</span><span class="tag">Email Security</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Architecture</h3>
+        <div class="tags">
+          <span class="tag">Microservices</span><span class="tag">DDD</span><span class="tag">Monorepos</span><span class="tag">Webhooks</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>DevOps</h3>
+        <div class="tags">
+          <span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">EKS</span><span class="tag">Kubernetes</span><span class="tag">EC2</span><span class="tag">Argo CD</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>AI/ML &amp; Data</h3>
+        <div class="tags">
+          <span class="tag">FastAI</span><span class="tag">PyTorch</span><span class="tag">PyTorch Geometric</span><span class="tag">Selenium</span><span class="tag">S3</span><span class="tag">Power BI</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Automation</h3>
+        <div class="tags">
+          <span class="tag">n8n</span><span class="tag">Zapier</span><span class="tag">Agentic Workflows</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index mono">// 05</span>
+      <h2>Education &amp; Recognition</h2>
+    </div>
+    <div class="achievement" style="margin-bottom: 2rem;">
+      <a href="https://drive.google.com/file/d/1aVrThNdO3zY4EOoC4bYDDfN_2kCuJZ-S/view?usp=sharing" target="_blank" rel="noopener noreferrer">Best Paper Presentation</a> at the DST SERB sponsored International Conference on Artificial
+      Intelligence of Things For Sustainability, held on January 20th and 21st, 2024, at NIST (Autonomous), Berhampur, Odisha, India.
+    </div>
+    <div class="edu">
+      <h3>B.Sc. in Computer Science</h3>
+      <div class="meta">Kathmandu University, Aug 2021 to Jul 2026</div>
+      <div class="tags">
+        <span class="tag">AI</span><span class="tag">Data Structures &amp; Algorithms</span><span class="tag">Computer Architecture</span><span class="tag">OOP</span><span class="tag">DBMS</span><span class="tag">Compiler Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="get-in-touch">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Have something worth building?</h2>
+      <p>I like hard, high-stakes problems more than easy code. Tell me what you're trying to make happen.</p>
+      <a class="btn-primary btn-large" href="mailto:bishesh.khanal25@gmail.com">Contact me →</a>
+      <p class="mailto-note">Opens your default email app if you have one set up, otherwise the address is copied to your clipboard.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; width:100%; gap:0.5rem;">
+    <span>© 2026 Bishesh Raj Khanal</span>
+    <a href="mailto:bishesh.khanal25@gmail.com">bishesh.khanal25@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var track = document.getElementById('carouselTrack');
+    var viewport = track.parentElement;
+    var items = Array.prototype.slice.call(track.children);
+    var prevBtn = document.getElementById('carouselPrev');
+    var nextBtn = document.getElementById('carouselNext');
+    var current = 0;
+    var total = items.length;
+
+    function update() {
+      var itemStyle = getComputedStyle(items[0]);
+      // offsetWidth reflects the element's layout box, which CSS "transform: scale()"
+      // never changes — this keeps the step size constant no matter which item is focused.
+      var itemWidth = items[0].offsetWidth
+        + parseFloat(itemStyle.marginLeft)
+        + parseFloat(itemStyle.marginRight);
+      var viewportWidth = viewport.getBoundingClientRect().width;
+      var offset = (viewportWidth / 2) - (current * itemWidth + itemWidth / 2);
+      track.style.transform = 'translateX(' + offset + 'px)';
+
+      items.forEach(function (item, i) {
+        item.classList.remove('is-focus', 'is-near');
+        var dist = Math.abs(i - current);
+        if (dist === 0) {
+          item.classList.add('is-focus');
+        } else if (dist === 1) {
+          item.classList.add('is-near');
+        }
+      });
+    }
+
+    prevBtn.addEventListener('click', function () {
+      current = (current - 1 + total) % total;
+      update();
+    });
+    nextBtn.addEventListener('click', function () {
+      current = (current + 1) % total;
+      update();
+    });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // Copy email to clipboard as a fallback for visitors with no default mail app
+  (function () {
+    var toast = document.getElementById('copyToast');
+    var mailLinks = document.querySelectorAll('a[href^="mailto:"]');
+    var hideTimer;
+ 
+    mailLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        var email = link.getAttribute('href').replace('mailto:', '').split('?')[0];
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).catch(function () {});
+        }
+        toast.textContent = 'Copied ' + email + ' to your clipboard';
+        toast.classList.add('is-visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () {
+          toast.classList.remove('is-visible');
+        }, 2600);
+      });
+    });
+  })();
+</script>
 </body>
 </html>
