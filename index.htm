@@ -481,19 +481,16 @@
     aspect-ratio: 1.294 / 1;
     border-radius: 10px;
     overflow: hidden;
-    background: #1c1d1c;
+    background: var(--surface);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
   .cert-frame iframe {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    top: var(--ct, 0%);
+    left: var(--cl, 0%);
+    width: var(--cw, 100%);
+    height: var(--ch, 100%);
     border: none;
-    /* View-only: no toolbar/print/download/zoom, and no interaction at all —
-       pointer-events is disabled on every cert iframe (focused or not) so it
-       behaves like a static image rather than an editable/scrollable PDF viewer. */
-    pointer-events: none;
   }
   .cert-caption {
     margin-top: 0.6rem;
@@ -702,19 +699,19 @@
       <div class="cert-viewport">
         <div class="cert-track" id="certTrack">
           <div class="cert-item">
-            <div class="cert-frame"><iframe src="certs/AIoT4S-Best-Paper-Presentation.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=Fit" title="Best Paper Presentation Certificate" loading="lazy"></iframe></div>
+            <div class="cert-frame" style="--cl:-8%; --cw:116%; --ch:127%;"><iframe src="https://drive.google.com/file/d/1aVrThNdO3zY4EOoC4bYDDfN_2kCuJZ-S/preview" title="Best Paper Presentation Certificate" loading="lazy" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
             <div class="cert-caption">Best Paper Presentation — AIoT4S 2024</div>
           </div>
           <div class="cert-item">
-            <div class="cert-frame"><iframe src="certs/google-ai-professional-certificate.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=Fit" title="Google AI Professional Certificate" loading="lazy"></iframe></div>
+            <div class="cert-frame" style="--cl:-3%; --cw:108.5%; --ch:114.25%;"><iframe src="https://drive.google.com/file/d/1nhcdKzzwxZ7UMTkJXnu7AKregcWhFGXX/preview" title="Google AI Professional Certificate" loading="lazy" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
             <div class="cert-caption">Google AI Professional Certificate</div>
           </div>
           <div class="cert-item">
-            <div class="cert-frame"><iframe src="certs/google-ai-essentials-specialization.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=Fit" title="Google AI Essentials Specialization" loading="lazy"></iframe></div>
+            <div class="cert-frame" style="--cl:-3%; --cw:108.5%; --ch:114.25%;"><iframe src="https://drive.google.com/file/d/17yKl3mQntFQmcQ7ApSvR7pfmNNPm_65o/preview" title="Google AI Essentials Specialization" loading="lazy" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
             <div class="cert-caption">Google AI Essentials Specialization</div>
           </div>
           <div class="cert-item">
-            <div class="cert-frame"><iframe src="certs/ibm-building-ai-agents.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=Fit" title="IBM Building AI Agents and Agentic Workflows" loading="lazy"></iframe></div>
+            <div class="cert-frame" style="--cl:-3%; --cw:108.5%; --ch:114.25%;"><iframe src="https://drive.google.com/file/d/1wrVx5xaEmee2Ls7xp7XeUPcFuFNRYYu9/preview" title="IBM Building AI Agents and Agentic Workflows" loading="lazy" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
             <div class="cert-caption">IBM — Building AI Agents and Agentic Workflows</div>
           </div>
         </div>
