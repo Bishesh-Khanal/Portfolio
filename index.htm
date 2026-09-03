@@ -445,6 +445,98 @@
     opacity: 1;
     transform: translate(-50%, 0);
   }
+
+  /* ===== Certificates carousel (full-width variant) ===== */
+  .cert-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem;
+    width: 100%;
+  }
+  .cert-viewport {
+    width: 100%;
+    overflow: hidden;
+    padding: 0.5rem 0;
+  }
+  .cert-track {
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .cert-item {
+    flex: 0 0 auto;
+    width: min(44vw, 560px);
+    margin: 0 12px;
+    opacity: 0.25;
+    transform: scale(0.72);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  }
+  .cert-item.is-near { opacity: 0.5; transform: scale(0.86); }
+  .cert-item.is-focus { opacity: 1; transform: scale(1); }
+  .cert-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.294 / 1;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1c1d1c;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .cert-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* View-only: no toolbar/print/download/zoom, and no interaction at all —
+       pointer-events is disabled on every cert iframe (focused or not) so it
+       behaves like a static image rather than an editable/scrollable PDF viewer. */
+    pointer-events: none;
+  }
+  .cert-caption {
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    text-align: center;
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .cert-item.is-focus .cert-caption { color: var(--ink); }
+  .cert-controls { display: flex; gap: 1rem; }
+  .cert-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .cert-btn:hover { border-color: var(--accent); color: var(--accent); }
+ 
+  /* Large / ultra-wide desktops (e.g. 27" screens): the fixed 560px cap above
+     leaves too much empty space on either side of the pair of certs, which reads
+     as an oversized left/right margin. Scale the cap up with viewport width so
+     the certs fill more of the screen and that empty margin shrinks. */
+  @media (min-width: 1900px) {
+    .cert-item { width: min(30vw, 720px); }
+  }
+ 
+  /* Tablet: still comfortably legible, but sized for a single cert in focus
+     (see the JS single-focus breakpoint at 1024px) rather than a pair. */
+  @media (max-width: 1024px) {
+    .cert-item { width: min(62vw, 520px); }
+  }
+ 
+  @media (max-width: 780px) {
+    .cert-item { width: 82vw; max-width: 380px; }
+  }
 </style>
 </head>
 <body>
@@ -471,11 +563,11 @@
     </p>
     <a class="btn-primary" href="mailto:bishesh.khanal25@gmail.com">Contact me →</a>
     <div class="contact-row">
-      <a href="https://drive.google.com/file/d/1eXbtVclr1zoSlFWd1zjfiUkkPvgdwZ2L/view?usp=sharing" target="_blank" rel="noopener noreferrer">Résumé</a>
+      <a href="https://drive.google.com/file/d/1co5X33lPc4vYdFTaehPJuqu--YY8-9d_/view?usp=sharing" target="_blank" rel="noopener noreferrer">Résumé</a>
       <span class="dot">·</span>
       <a href="https://github.com/Bishesh-Khanal" target="_blank" rel="noopener noreferrer">GitHub</a>
       <span class="dot">·</span>
-      <a href="https://www.linkedin.com/in/bishesh-raj-khanal-1a1613239" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/bishesh-raj-khanal/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <span class="dot">·</span>
       <span>+977-9845871639</span>
     </div>
@@ -600,10 +692,45 @@
   </div>
 </section>
 
-<section id="skills">
+<section id="certificates">
   <div class="wrap">
     <div class="section-head">
       <span class="index mono">// 04</span>
+      <h2>Certificates &amp; Recognition</h2>
+    </div>
+    <div class="cert-carousel" id="certCarousel">
+      <div class="cert-viewport">
+        <div class="cert-track" id="certTrack">
+          <div class="cert-item">
+            <div class="cert-frame"><iframe src="certs/AIoT4S-Best-Paper-Presentation.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=Fit" title="Best Paper Presentation Certificate" loading="lazy"></iframe></div>
+            <div class="cert-caption">Best Paper Presentation — AIoT4S 2024</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-frame"><iframe src="certs/google-ai-professional-certificate.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=Fit" title="Google AI Professional Certificate" loading="lazy"></iframe></div>
+            <div class="cert-caption">Google AI Professional Certificate</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-frame"><iframe src="certs/google-ai-essentials-specialization.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=Fit" title="Google AI Essentials Specialization" loading="lazy"></iframe></div>
+            <div class="cert-caption">Google AI Essentials Specialization</div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-frame"><iframe src="certs/ibm-building-ai-agents.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&view=Fit" title="IBM Building AI Agents and Agentic Workflows" loading="lazy"></iframe></div>
+            <div class="cert-caption">IBM — Building AI Agents and Agentic Workflows</div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-controls">
+        <button class="cert-btn" id="certPrev" aria-label="Show previous certificate">←</button>
+        <button class="cert-btn" id="certNext" aria-label="Show next certificate">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index mono">// 05</span>
       <h2>Skills</h2>
     </div>
     <div class="skills-grid">
@@ -646,7 +773,7 @@
       <div class="skill-group">
         <h3>AI/ML &amp; Data</h3>
         <div class="tags">
-          <span class="tag">FastAI</span><span class="tag">PyTorch</span><span class="tag">PyTorch Geometric</span><span class="tag">Selenium</span><span class="tag">S3</span><span class="tag">Power BI</span>
+          <span class="tag">FastAI</span><span class="tag">PyTorch</span><span class="tag">PyTorch Geometric</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Selenium</span><span class="tag">S3</span><span class="tag">MinIO</span><span class="tag">Power BI</span>
         </div>
       </div>
       <div class="skill-group">
@@ -662,12 +789,8 @@
 <section id="education">
   <div class="wrap">
     <div class="section-head">
-      <span class="index mono">// 05</span>
-      <h2>Education &amp; Recognition</h2>
-    </div>
-    <div class="achievement" style="margin-bottom: 2rem;">
-      <a href="https://drive.google.com/file/d/1aVrThNdO3zY4EOoC4bYDDfN_2kCuJZ-S/view?usp=sharing" target="_blank" rel="noopener noreferrer">Best Paper Presentation</a> at the DST SERB sponsored International Conference on Artificial
-      Intelligence of Things For Sustainability, held on January 20th and 21st, 2024, at NIST (Autonomous), Berhampur, Odisha, India.
+      <span class="index mono">// 06</span>
+      <h2>Education</h2>
     </div>
     <div class="edu">
       <h3>B.Sc. in Computer Science</h3>
@@ -761,6 +884,78 @@
         }, 2600);
       });
     });
+  })();
+</script>
+
+<script>
+  // Certificates carousel — shows TWO items in focus at once (current and current+1),
+  // sliding one step at a time. Independent of the hobbies carousel script above.
+  (function () {
+    var track = document.getElementById('certTrack');
+    var viewport = track.parentElement;
+    var items = Array.prototype.slice.call(track.children);
+    var prevBtn = document.getElementById('certPrev');
+    var nextBtn = document.getElementById('certNext');
+    var current = 0;
+    var total = items.length;
+ 
+    // Below this width (tablet and mobile), show a single cert in focus at a
+    // time instead of a pair — matches the single-column .cert-item sizing
+    // set in CSS for tablet/mobile breakpoints.
+    var singleFocusQuery = window.matchMedia('(max-width: 1024px)');
+ 
+    function update() {
+      var itemStyle = getComputedStyle(items[0]);
+      var itemWidth = items[0].offsetWidth
+        + parseFloat(itemStyle.marginLeft)
+        + parseFloat(itemStyle.marginRight);
+      var viewportWidth = viewport.getBoundingClientRect().width;
+      var singleFocus = singleFocusQuery.matches;
+      var nearPrev = (current - 1 + total) % total;
+ 
+      var offset;
+      if (singleFocus) {
+        // Center just the current item in the viewport.
+        offset = (viewportWidth / 2) - (current * itemWidth + itemWidth / 2);
+      } else {
+        // Center the midpoint between the two focused items (current, next)
+        // in the middle of the viewport.
+        var pairCenter = (current + 1) * itemWidth;
+        offset = (viewportWidth / 2) - pairCenter;
+      }
+      track.style.transform = 'translateX(' + offset + 'px)';
+ 
+      var next = (current + 1) % total;
+      var nearNext = singleFocus ? next : (current + 2) % total;
+ 
+      items.forEach(function (item, i) {
+        item.classList.remove('is-focus', 'is-near');
+        if (singleFocus) {
+          if (i === current) {
+            item.classList.add('is-focus');
+          } else if (i === nearPrev || i === nearNext) {
+            item.classList.add('is-near');
+          }
+        } else {
+          if (i === current || i === next) {
+            item.classList.add('is-focus');
+          } else if (i === nearPrev || i === nearNext) {
+            item.classList.add('is-near');
+          }
+        }
+      });
+    }
+ 
+    prevBtn.addEventListener('click', function () {
+      current = (current - 1 + total) % total;
+      update();
+    });
+    nextBtn.addEventListener('click', function () {
+      current = (current + 1) % total;
+      update();
+    });
+    window.addEventListener('resize', update);
+    update();
   })();
 </script>
 </body>
